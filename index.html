@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeOS - Your Personal Operating System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">⚙️</span>
+                    <span class="logo-text">LifeOS</span>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </button>
+                <button class="nav-item" data-page="brain-dump">
+                    <span class="nav-icon">🧠</span>
+                    <span class="nav-label">Brain Dump</span>
+                </button>
+                <button class="nav-item" data-page="tasks">
+                    <span class="nav-icon">✓</span>
+                    <span class="nav-label">Tasks</span>
+                </button>
+                <button class="nav-item" data-page="reminders">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-label">Reminders</span>
+                </button>
+                <button class="nav-item" data-page="schedule">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-label">Schedule</span>
+                </button>
+                <button class="nav-item" data-page="expenses">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-label">Expenses</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p class="tagline">Dump everything.<br>We organize.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page active">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p class="page-subtitle">Welcome back. Here's your overview.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Quick Stats -->
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-number" id="brainDumpCount">0</div>
+                            <div class="stat-label">Brain Dumps</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="taskCount">0</div>
+                            <div class="stat-label">Tasks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="reminderCount">0</div>
+                            <div class="stat-label">Reminders</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Brain Dumps -->
+                    <div class="recent-section">
+                        <div class="section-header">
+                            <h2>Recent Brain Dumps</h2>
+                            <a href="#" class="link-button" data-page="brain-dump">View All →</a>
+                        </div>
+                        <div id="recentBrainDumps" class="recent-list">
+                            <p class="empty-state">No brain dumps yet. Start by dumping your thoughts!</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action -->
+                    <div class="quick-action">
+                        <h2>Quick Dump</h2>
+                        <div class="quick-dump-form">
+                            <textarea id="quickDumpInput" placeholder="What's on your mind? Just dump it..." rows="4"></textarea>
+                            <button id="quickDumpButton" class="btn btn-primary">Dump It</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brain Dump Page -->
+            <section id="brain-dump" class="page">
+                <div class="page-header">
+                    <h1>Brain Dump</h1>
+                    <p class="page-subtitle">Everything you think of goes here. No organizing needed.</p>
+                </div>
+
+                <div class="brain-dump-container">
+                    <div class="dump-input-area">
+                        <textarea id="dumpInput" placeholder="What's on your mind? Just dump it. Don't worry about formatting or organization..." rows="5"></textarea>
+                        <div class="dump-actions">
+                            <button id="dumpButton" class="btn btn-primary">Add to Brain Dump</button>
+                            <span class="char-count"><span id="charCount">0</span>/500</span>
+                        </div>
+                    </div>
+
+                    <div class="dumps-list-container">
+                        <div class="list-header">
+                            <h2>Your Brain Dumps</h2>
+                            <div class="list-filters">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="recent">Recent</button>
+                            </div>
+                        </div>
+                        <div id="dumpsList" class="dumps-list">
+                            <p class="empty-state">No brain dumps yet. Start dumping your thoughts!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Page (Placeholder) -->
+            <section id="tasks" class="page">
+                <div class="page-header">
+                    <h1>Tasks</h1>
+                    <p class="page-subtitle">Coming soon</p>
+                </div>
+                <div class="placeholder">
+                    <p>Tasks feature is coming soon. Your brain dumps will be organized into actionable tasks automatically.</p>
+                </div>
+            </section>
+
+            <!-- Reminders Page (Placeholder) -->
+            <section id="reminders" class="page">
+                <div class="page-header">
+                    <h1>Reminders</h1>
+                    <p class="page-subtitle">Coming soon</p>
+                </div>
+                <div class="placeholder">
+                    <p>Reminders feature is coming soon. Get notified about important items from your brain dumps.</p>
+                </div>
+            </section>
+
+            <!-- Schedule Page (Placeholder) -->
+            <section id="schedule" class="page">
+                <div class="page-header">
+                    <h1>Schedule</h1>
+                    <p class="page-subtitle">Coming soon</p>
+                </div>
+                <div class="placeholder">
+                    <p>Schedule feature is coming soon. Your calendar will sync with your brain dumps and tasks.</p>
+                </div>
+            </section>
+
+            <!-- Expenses Page (Placeholder) -->
+            <section id="expenses" class="page">
+                <div class="page-header">
+                    <h1>Expenses</h1>
+                    <p class="page-subtitle">Coming soon</p>
+                </div>
+                <div class="placeholder">
+                    <p>Expenses feature is coming soon. Track and organize your spending automatically.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
