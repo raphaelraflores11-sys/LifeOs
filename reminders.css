@@ -126,3 +126,12 @@
     width: 100%;
   }
 }
+input[type="datetime-local"].reminders-input {
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
+  max-width: 100%;
+  min-height: 48px;
+  text-align: left;
+}
+
