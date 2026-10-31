@@ -1,0 +1,128 @@
+.reminders-app {
+  max-width: 720px;
+}
+.reminders-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.reminders-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d9dde6;
+  border-radius: 12px;
+  font: inherit;
+  background: #fff;
+}
+.reminders-input:focus {
+  outline: 2px solid var(--primary, #3b63e0);
+  outline-offset: 1px;
+}
+.reminders-add {
+  justify-self: start;
+}
+.reminders-error {
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.reminders-error[hidden] {
+  display: none;
+}
+.reminders-summary {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 12px 0 4px;
+}
+.reminder-group-title {
+  margin: 20px 0 10px;
+  font-size: 1rem;
+}
+.reminder-group-title.overdue {
+  color: #b42318;
+}
+.reminders-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e3e6ee;
+  border-radius: 12px;
+}
+.reminder-item.overdue {
+  border-color: #fecdca;
+  background: #fffafa;
+}
+.reminder-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+.reminder-main input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.reminder-info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.reminder-title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.reminder-due {
+  font-size: 0.9rem;
+  color: #666;
+}
+.reminder-item.overdue .reminder-due {
+  color: #b42318;
+}
+.reminder-item.done .reminder-title {
+  text-decoration: line-through;
+  color: #888;
+}
+.reminder-delete {
+  background: none;
+  border: none;
+  color: var(--primary, #3b63e0);
+  font: inherit;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+.reminders-clear {
+  margin-top: 14px;
+  background: none;
+  border: none;
+  color: #666;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.reminders-clear[hidden] {
+  display: none;
+}
+@media (max-width: 600px) {
+  .reminders-add {
+    width: 100%;
+  }
+}
