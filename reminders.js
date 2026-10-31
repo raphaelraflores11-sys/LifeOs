@@ -191,4 +191,85 @@
     updateDashboardCount();
   }
 
-  function
+function build() {
+    var section = document.getElementById("reminders");
+    if (!section) return;
+    var placeholder = section.querySelector(".placeholder");
+    if (!placeholder) return;
+
+    var subtitle = section.querySelector(".page-subtitle");
+    if (subtitle) subtitle.textContent = "Set reminders for what matters and see what's overdue.";
+
+    var root = el("div", "reminders-app");
+
+    var form = el("form", "reminders-form");
+    var titleInput = el("input", "reminders-input");
+    titleInput.type = "text";
+    titleInput.maxLength = MAX_LEN;
+    titleInput.placeholder = "Remind me to...";
+    titleInput.setAttribute("aria-label", "Reminder");
+
+    var dueInput = el("input", "reminders-input");
+    dueInput.type = "datetime-local";
+    dueInput.value = defaultDue();
+    dueInput.setAttribute("aria-label", "Due date and time");
+
+    var addBtn = el("button", "btn btn-primary reminders-add", "Add Reminder");
+    addBtn.type = "submit";
+
+    form.appendChild(titleInput);
+    form.appendChild(dueInput);
+    form.appendChild(addBtn);
+
+    ui.error = el("div", "reminders-error");
+    ui.error.hidden = true;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var title = titleInput.value.trim().slice(0, MAX_LEN);
+      var due = dueInput.value;
+      if (!title) {
+        showError("Please enter what to be reminded about.");
+        return;
+      }
+      if (!due || isNaN(new Date(due).getTime())) {
+        showError("Please pick a date and time.");
+        return;
+      }
+      showError("");
+      addReminder(title, due);
+      titleInput.value = "";
+      dueInput.value = defaultDue();
+      titleInput.focus();
+    });
+
+    ui.summary = el("div", "reminders-summary");
+    ui.groups = el("div", "reminders-groups");
+    ui.clear = el("button", "reminders-clear", "Clear completed");
+    ui.clear.type = "button";
+    ui.clear.addEventListener("click", clearDone);
+
+    root.appendChild(form);
+    root.appendChild(ui.error);
+    root.appendChild(ui.summary);
+    root.appendChild(ui.groups);
+    root.appendChild(ui.clear);
+
+    placeholder.parentNode.replaceChild(root, placeholder);
+    render();
+
+    // Reminders slip from Upcoming to Overdue as time passes.
+    setInterval(render, 30000);
+
+    // Keep the Dashboard count correct after any click or navigation.
+    document.addEventListener("click", function () {
+      setTimeout(updateDashboardCount, 0);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", build);
+  } else {
+    build();
+  }
+})();
