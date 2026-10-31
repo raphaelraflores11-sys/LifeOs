@@ -266,7 +266,7 @@ function build() {
       setTimeout(updateDashboardCount, 0);
     });
   }
-
+  window.LifeOSReminders = { add: function (title, due) { addReminder(title, due); } };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", build);
   } else {
