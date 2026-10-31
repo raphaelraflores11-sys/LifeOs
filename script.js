@@ -174,8 +174,7 @@ const UIController = {
         // Update stats
         const stats = AppState.getBrainDumpStats();
         document.getElementById('brainDumpCount').textContent = stats.total;
-        document.getElementById('taskCount').textContent = '0'; // Placeholder
-        document.getElementById('reminderCount').textContent = '0'; // Placeholder
+        
         
         // Update recent items
         this.renderRecentBrainDumps();
