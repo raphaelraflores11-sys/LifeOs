@@ -197,7 +197,7 @@
       setTimeout(updateDashboardCount, 0);
     });
   }
-
+  window.LifeOSTasks = { add: function (text) { addTask(text); } };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", build);
   } else {
