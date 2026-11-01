@@ -87,13 +87,23 @@ const UIController = {
         
         // Update state
         AppState.currentPage = pageName;
-    },
-    
+
         // Start each page at the top (prevents a blank screen on iPhone)
         const main = document.querySelector('.main-content');
         if (main) main.scrollTop = 0;
         window.scrollTo(0, 0);
 
+        // Safari fix: force the page area to repaint after switching pages
+        const repaint = () => {
+            if (!main) return;
+            main.style.display = 'none';
+            void main.offsetHeight;
+            main.style.display = '';
+        };
+        repaint();
+        requestAnimationFrame(repaint);
+        setTimeout(repaint, 100);
+    },
     
     // Mobile Menu
     toggleMobileMenu() {
@@ -170,192 +180,4 @@ const UIController = {
                 <div class="recent-item">
                     <div>${this.escapeHtml(contentPreview)}</div>
                     <div class="recent-item-time">${timeString}</div>
-                </div>
-            `;
-        }).join('');
-    },
-    
-    // Dashboard
-    updateDashboard() {
-        // Update stats
-        const stats = AppState.getBrainDumpStats();
-        document.getElementById('brainDumpCount').textContent = stats.total;
-        
-        
-        // Update recent items
-        this.renderRecentBrainDumps();
-    },
-    
-    // Character Counter
-    updateCharCount(input, counter) {
-        const count = input.value.length;
-        const limit = 500;
-        counter.textContent = Math.min(count, limit);
-        
-        if (count >= limit) {
-            input.value = input.value.substring(0, limit);
-        }
-    },
-    
-    // Utility Functions
-    formatTime(date) {
-        const now = new Date();
-        const diffMs = now - date;
-        const diffMins = Math.floor(diffMs / 60000);
-        const diffHours = Math.floor(diffMs / 3600000);
-        const diffDays = Math.floor(diffMs / 86400000);
-        
-        if (diffMins < 1) {
-            return 'Just now';
-        } else if (diffMins < 60) {
-            return `${diffMins}m ago`;
-        } else if (diffHours < 24) {
-            return `${diffHours}h ago`;
-        } else if (diffDays < 7) {
-            return `${diffDays}d ago`;
-        } else {
-            return date.toLocaleDateString();
-        }
-    },
-    
-    truncateText(text, length) {
-        if (text.length <= length) {
-            return text;
-        }
-        return text.substring(0, length) + '...';
-    },
-    
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-};
-
-// ============================================
-// EVENT LISTENERS
-// ============================================
-
-function setupEventListeners() {
-    // Navigation
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const pageName = item.dataset.page;
-            UIController.showPage(pageName);
-        });
-    });
-    
-    // Mobile Menu Toggle
-    document.getElementById('menuToggle').addEventListener('click', () => {
-        UIController.toggleMobileMenu();
-    });
-    
-    // Brain Dump Page - Add Dump
-    const dumpButton = document.getElementById('dumpButton');
-    const dumpInput = document.getElementById('dumpInput');
-    
-    dumpButton.addEventListener('click', () => {
-        addBrainDump(dumpInput);
-    });
-    
-    dumpInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && e.ctrlKey) {
-            addBrainDump(dumpInput);
-        }
-    });
-    
-    // Character Counter
-    const charCount = document.getElementById('charCount');
-    dumpInput.addEventListener('input', () => {
-        UIController.updateCharCount(dumpInput, charCount);
-    });
-    
-    // Dashboard - Quick Dump
-    const quickDumpButton = document.getElementById('quickDumpButton');
-    const quickDumpInput = document.getElementById('quickDumpInput');
-    
-    quickDumpButton.addEventListener('click', () => {
-        addBrainDump(quickDumpInput);
-    });
-    
-    quickDumpInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && e.ctrlKey) {
-            addBrainDump(quickDumpInput);
-        }
-    });
-    
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const filter = btn.dataset.filter;
-            // Filter functionality can be implemented here
-            // For now, just show all
-            UIController.renderBrainDumps();
-        });
-    });
-}
-
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-
-function addBrainDump(inputElement) {
-    const content = inputElement.value;
-    
-    if (!content.trim()) {
-        alert('Please write something before dumping!');
-        return;
-    }
-    
-    const dump = AppState.addBrainDump(content);
-    
-    if (dump) {
-        inputElement.value = '';
-        
-        // Update counter if it exists
-        const charCount = inputElement.parentElement.querySelector('#charCount');
-        if (charCount) {
-            charCount.textContent = '0';
-        }
-        
-        // Refresh UI
-        if (AppState.currentPage === 'brain-dump') {
-            UIController.renderBrainDumps();
-        }
-        UIController.updateDashboard();
-        
-        // Show success feedback
-        showNotification('Brain dump added!');
-    }
-}
-
-function showNotification(message) {
-    // Simple notification - can be enhanced later
-    console.log('✓', message);
-}
-
-// ============================================
-// INITIALIZATION
-// ============================================
-
-function init() {
-    // Initialize state
-    AppState.init();
-    
-    // Setup event listeners
-    setupEventListeners();
-    
-    // Initial render
-    UIController.updateDashboard();
-    UIController.renderBrainDumps();
-}
-
-// Start app when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+                
