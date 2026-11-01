@@ -748,20 +748,22 @@ textarea {
     }
 
     .app-container {
+        display: block;
         height: auto;
         min-height: 100vh;
         min-height: 100dvh;
         overflow: visible;
     }
 
-    .main-content {
-        overflow: visible;
-    }
-
     .sidebar {
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 1000;
+        width: 100%;
+        max-height: 60px;
+        overflow: hidden;
     }
 
     .sidebar.mobile-open {
@@ -769,5 +771,10 @@ textarea {
         max-height: 100vh;
         max-height: 100dvh;
         overflow-y: auto;
+    }
+
+    .main-content {
+        overflow: visible;
+        padding-top: 60px;
     }
 }
