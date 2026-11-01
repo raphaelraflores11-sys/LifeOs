@@ -89,6 +89,12 @@ const UIController = {
         AppState.currentPage = pageName;
     },
     
+        // Start each page at the top (prevents a blank screen on iPhone)
+        const main = document.querySelector('.main-content');
+        if (main) main.scrollTop = 0;
+        window.scrollTo(0, 0);
+
+    
     // Mobile Menu
     toggleMobileMenu() {
         const sidebar = document.querySelector('.sidebar');
