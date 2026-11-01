@@ -746,4 +746,10 @@ textarea {
     .page {
         animation: none;
     }
+
+    .app-container {
+        height: 100vh;
+        height: 100dvh;
+    }
 }
+
