@@ -2,9 +2,16 @@
 
 **Dump everything in your head. Let LifeOS organize the rest.**
 
-LifeOS is a personal productivity web app. Write down whatever is on your mind, then turn those thoughts into tasks and reminders.
+LifeOS is a personal productivity web app. Write down whatever is on your mind, then turn those thoughts into ideas, tasks, and reminders.
 
 **Live app:** https://raphaelraflores11-sys.github.io/LifeOs/
+
+## How it fits together
+
+- **Notes = Brain Dumps.** Everything you write goes into Brain Dump first. Your brain dumps are your notes.
+- **Ideas:** thoughts worth exploring later. (Planned: its own tab.)
+- **Tasks:** things you need to do.
+- **Reminders:** things tied to a date and time.
 
 ## What it does today
 
@@ -21,11 +28,11 @@ All your data is saved in your own browser (LocalStorage). There are no accounts
 
 The first version is complete when a user can:
 
-- [x] Dump thoughts into LifeOS
+- [x] Dump thoughts into LifeOS (Brain Dump)
 - [ ] Ask real AI to organize those thoughts
-- [ ] See ideas, tasks, and notes separated
+- [ ] See ideas, tasks, and notes in their own places (notes and tasks are done; the Ideas tab is next)
 - [ ] Save and revisit the results
-- [x] Turn a thought into an actionable task (currently by hand, from any dump)
+- [ ] Turn an idea into an actionable task
 - [x] Use the app through a shareable link (live on GitHub Pages)
 
 ## Tech stack
@@ -74,9 +81,10 @@ Then open http://localhost:3000/api/health. It should return JSON saying the bac
 
 ## Roadmap
 
-1. AI organization: send a brain dump to a hosted backend and get back a summary plus items labeled idea, task, or note, shown as suggestions you can accept.
-2. Save and revisit AI results.
-3. Turn an accepted idea into a task.
-4. Back up and restore your data.
-5. Accounts and syncing across devices.
-6. Schedule and Expenses.
+1. **Ideas tab:** save ideas in their own list, and turn any idea into a task.
+2. **Make idea:** a button on each brain dump to move it into Ideas.
+3. **AI organization:** send a brain dump to a hosted backend and get back a short summary plus suggestions that sort each thought into an idea or a task. Anything else stays as a note. You decide what to accept.
+4. **Save and revisit** AI results.
+5. Back up and restore your data.
+6. Accounts and syncing across devices.
+7. Schedule and Expenses.
