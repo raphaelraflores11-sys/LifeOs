@@ -71,6 +71,8 @@
     if (!actions || !del) return;
     var id = del.getAttribute("data-dump-id");
 
+    var ideaBtn = el("button", "dump-item-btn", "Make idea");
+    ideaBtn.type = "button";
     var taskBtn = el("button", "dump-item-btn", "Make task");
     taskBtn.type = "button";
     var reminderBtn = el("button", "dump-item-btn", "Make reminder");
@@ -91,6 +93,20 @@
 
     var note = el("div", "dump-note");
     note.setAttribute("aria-live", "polite");
+
+    ideaBtn.addEventListener("click", function () {
+      var text = fullText(id).replace(/\s+/g, " ").trim();
+      if (!text) {
+        flash(note, "Couldn't read that dump.", true);
+        return;
+      }
+      if (!window.LifeOSIdeas) {
+        flash(note, "Ideas aren't available right now.", true);
+        return;
+      }
+      window.LifeOSIdeas.add(text);
+      flash(note, "Added to Ideas \u2713");
+    });
 
     taskBtn.addEventListener("click", function () {
       var text = clip(fullText(id), TASK_MAX);
@@ -134,6 +150,7 @@
       flash(note, "Reminder set \u2713");
     });
 
+    actions.insertBefore(ideaBtn, del);
     actions.insertBefore(taskBtn, del);
     actions.insertBefore(reminderBtn, del);
     actions.insertAdjacentElement("afterend", picker);
