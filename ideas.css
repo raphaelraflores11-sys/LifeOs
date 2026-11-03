@@ -1,0 +1,78 @@
+.ideas-app {
+  max-width: 720px;
+}
+.ideas-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.ideas-input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #d9dde6;
+  border-radius: 12px;
+  font: inherit;
+  background: #fff;
+}
+.ideas-input:focus {
+  outline: 2px solid var(--primary-color, #2563eb);
+  outline-offset: 1px;
+}
+.ideas-note {
+  color: #2446b8;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.ideas-note:empty {
+  display: none;
+}
+.ideas-note-error {
+  color: #b42318;
+}
+.ideas-summary {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 10px 0 12px;
+}
+.ideas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.idea-item {
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e3e6ee;
+  border-left: 4px solid #8b5cf6;
+  border-radius: 12px;
+}
+.idea-text {
+  overflow-wrap: anywhere;
+}
+.idea-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.idea-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color, #2563eb);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 6px 8px 6px 0;
+}
+@media (max-width: 600px) {
+  .ideas-form {
+    flex-direction: column;
+  }
+  .ideas-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
