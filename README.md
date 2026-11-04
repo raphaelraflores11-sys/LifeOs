@@ -9,14 +9,15 @@ LifeOS is a personal productivity web app. Write down whatever is on your mind, 
 ## How it fits together
 
 - **Notes = Brain Dumps.** Everything you write goes into Brain Dump first. Your brain dumps are your notes.
-- **Ideas:** thoughts worth exploring later. (Planned: its own tab.)
+- **Ideas:** thoughts worth exploring later. Turn an idea into a task when you're ready to act on it.
 - **Tasks:** things you need to do.
 - **Reminders:** things tied to a date and time.
 
 ## What it does today
 
 - **Brain Dump:** write down anything (up to 500 characters), see it in a list, and delete it.
-- **Make task / Make reminder:** turn any brain dump into a task, or into a reminder with a date and time, in one tap. The original dump is kept.
+- **Make idea / Make task / Make reminder:** turn any brain dump into an idea, a task, or a reminder with a date and time, in one tap. The original dump is kept.
+- **Ideas:** add, list, and delete ideas. **Turn into task** creates a task and removes the idea.
 - **Tasks:** add, tick off, and delete tasks, and filter by All, Active, or Done.
 - **Reminders:** set reminders with a date and time. They are grouped into Overdue, Upcoming, and Done.
 - **Dashboard:** live counts of your brain dumps, active tasks, and open reminders, plus your recent dumps and a quick-dump box.
@@ -30,9 +31,9 @@ The first version is complete when a user can:
 
 - [x] Dump thoughts into LifeOS (Brain Dump)
 - [ ] Ask real AI to organize those thoughts
-- [ ] See ideas, tasks, and notes in their own places (notes and tasks are done; the Ideas tab is next)
-- [ ] Save and revisit the results
-- [ ] Turn an idea into an actionable task
+- [x] See ideas, tasks, and notes in their own places
+- [ ] Save and revisit the AI results
+- [x] Turn an idea into an actionable task
 - [x] Use the app through a shareable link (live on GitHub Pages)
 
 ## Tech stack
@@ -45,9 +46,10 @@ The first version is complete when a user can:
 ## Project structure
 
 - `index.html`, `styles.css`, `script.js`: the app shell, navigation, Dashboard, and Brain Dump
+- `ideas.js`, `ideas.css`: the Ideas page
 - `tasks.js`, `tasks.css`: the Tasks page
 - `reminders.js`, `reminders.css`: the Reminders page
-- `dump-actions.js`: the "Make task" and "Make reminder" buttons on Brain Dump entries
+- `dump-actions.js`: the "Make idea", "Make task", and "Make reminder" buttons on Brain Dump entries
 - `server/`: the backend foundation (`server.js`, `package.json`)
 - `.env.example`: placeholder settings for the backend
 
@@ -81,10 +83,8 @@ Then open http://localhost:3000/api/health. It should return JSON saying the bac
 
 ## Roadmap
 
-1. **Ideas tab:** save ideas in their own list, and turn any idea into a task.
-2. **Make idea:** a button on each brain dump to move it into Ideas.
-3. **AI organization:** send a brain dump to a hosted backend and get back a short summary plus suggestions that sort each thought into an idea or a task. Anything else stays as a note. You decide what to accept.
-4. **Save and revisit** AI results.
-5. Back up and restore your data.
-6. Accounts and syncing across devices.
-7. Schedule and Expenses.
+1. **AI organization:** send a brain dump to a small hosted backend that calls a free AI API, and get back a short summary plus suggestions that sort each thought into an idea or a task. Anything else stays as a note. You decide what to accept.
+2. **Save and revisit** AI results.
+3. Back up and restore your data.
+4. Accounts and syncing across devices.
+5. Schedule and Expenses.
